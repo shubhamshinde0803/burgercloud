@@ -1,9 +1,11 @@
 package srs.burgercloud.controller;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,8 +24,8 @@ import java.util.List;
 @RequestMapping("/design")
 public class DesignBurgerController {
 
-    @GetMapping
-    public String showDesignForm(Model model) {
+    @ModelAttribute
+    public void addIngredientsToModel(Model model) {
         List<Ingredients> ingredients = Arrays.asList(
                 new Ingredients("VGP", "Veg Potato", Type.CATEGORY),
                 new Ingredients("NVGC", "Non Veg Chicken", Type.CATEGORY),
@@ -38,16 +40,25 @@ public class DesignBurgerController {
             model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
         }
 
+
+    }
+
+    @GetMapping
+    public String showDesignForm(Model model) {
         model.addAttribute("design", new Burger());
 
         return "design";
     }
 
     @PostMapping
-    public String processDesign(@ModelAttribute("design") Burger design) {
+    public String processDesign(@Valid @ModelAttribute("design") Burger design, Errors errors, Model model) {
+        if (errors.hasErrors()) {
+            System.out.println("has errors");
+            return "design";
+        }
         //save the taco design
         //
-
+        System.out.println("in process design");
         log.info("Processing design: " + design);
         return "redirect:/orders/current";
     }

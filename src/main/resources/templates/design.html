@@ -10,7 +10,10 @@
 <h1>Design your Burger!</h1>
 <img th:src="@{/images/burger-logo.png}">
 
-<form method="POST" th:object="${design}">
+<form method="POST" th:action="@{/design}" th:object="${design}">
+    <span class="validationError"
+          th:if="${#fields.hasErrors('ingredients')}"
+          th:errors="*{ingredients}">Ingredient error</span>
     <div class="grid">
         <div class="ingredient-group" id="fillings">
             <h3>Designate your type:</h3>
@@ -42,6 +45,10 @@
         <h3>Name you burger creation: </h3>
         <input type="text" th:field="*{name}">
         <br/>
+<!--        <span th:text="${#fields.hasErrors('name')}">XXX</span>-->
+<!--        <span class="validationError"-->
+<!--              th:if="${#fields.hasErrors('name')}"-->
+<!--              th:errors="*{name}">Name error</span>-->
         <button>Submit your burger</button>
     </div>
 </form>
