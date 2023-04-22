@@ -1,13 +1,20 @@
-package srs.domain;
+package srs.example.burgerCloudApplication.domain;
 
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import srs.example.burgerCloudApplication.domain.Burger;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Data
 public class Order {
+    private Long id;
+    private Date placedAt;
     @NotBlank(message = "name is required")
     private String name;
     @NotBlank(message = "street is required")
@@ -24,4 +31,10 @@ public class Order {
     private String ccExpiration;
     @Digits(integer = 3, fraction = 0, message = "invalid cvv")
     private String ccCVV;
+
+    private List<Burger> burgers = new ArrayList<>();
+
+    public void addDesign(Burger design) {
+        this.burgers.add(design);
+    }
 }

@@ -1,4 +1,4 @@
-package srs.domain;
+package srs.example.burgerCloudApplication.domain;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

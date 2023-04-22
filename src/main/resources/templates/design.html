@@ -42,9 +42,9 @@
         </div>
     </div>
     <div>
-        <h3>Name you burger creation: </h3>
+        <h3>Name your burger creation: </h3>
         <input type="text" th:field="*{name}">
-        <span th:text="${#fields.hasErrors('name')}">XXX</span>
+
         <span class="validationError"
               th:if="${#fields.hasErrors('name')}"
               th:errors="*{name}">Name error</span>
