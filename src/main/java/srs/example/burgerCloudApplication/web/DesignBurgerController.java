@@ -24,14 +24,16 @@ import java.util.List;
 @SessionAttributes("order")
 public class DesignBurgerController {
 
-    private final IngredientRepository ingredientRepo;
+    @Autowired
+    private IngredientRepository ingredientRepo;
+    @Autowired
     private BurgerRepository designRepo;
 
-    @Autowired
-    public DesignBurgerController(IngredientRepository ingredientRepo, BurgerRepository designRepo) {
-        this.ingredientRepo = ingredientRepo;
-        this.designRepo = designRepo;
-    }
+//    @Autowired
+//    public DesignBurgerController(IngredientRepository ingredientRepo, BurgerRepository designRepo) {
+//        this.ingredientRepo = ingredientRepo;
+//        this.designRepo = designRepo;
+//    }
 
     @ModelAttribute(name = "order")
     public Order order() {
@@ -57,17 +59,17 @@ public class DesignBurgerController {
     }
 
     @PostMapping
-    public String processDesign(@Valid Burger design, Errors errors, @ModelAttribute Order order) {
+    public String processDesign(@Valid Burger burger, Errors errors, @ModelAttribute Order order) {
         if (errors.hasErrors()) {
             System.out.println("process design has errors");
             return "design";
         }
         //save the taco design
-        Burger saved = designRepo.save(design);
+        Burger saved = designRepo.save(burger);
         //
         order.addDesign(saved);
         System.out.println("process method called");
-        log.info("Processing design: " + design);
+        log.info("Processing design: " + burger);
         return "redirect:/orders/current";
     }
 

@@ -1,8 +1,8 @@
 package srs.example.burgerCloudApplication.data;
 
+import org.springframework.data.repository.CrudRepository;
 import srs.example.burgerCloudApplication.domain.Burger;
 
-public interface BurgerRepository {
+public interface BurgerRepository extends CrudRepository<Burger, Long> {
 
-    Burger save(Burger burger);
 }

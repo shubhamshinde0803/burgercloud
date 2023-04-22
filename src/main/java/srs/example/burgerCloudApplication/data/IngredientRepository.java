@@ -1,9 +1,8 @@
 package srs.example.burgerCloudApplication.data;
 
+import org.springframework.data.repository.CrudRepository;
 import srs.example.burgerCloudApplication.domain.Ingredients;
 
-public interface IngredientRepository {
-    Iterable<Ingredients> findAll();
-    Ingredients findOne(String id);
-    Ingredients Save(Ingredients ingredient);
+public interface IngredientRepository extends CrudRepository<Ingredients, String> {
+
 }
