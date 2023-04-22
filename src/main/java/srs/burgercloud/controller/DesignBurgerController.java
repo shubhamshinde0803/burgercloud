@@ -53,12 +53,12 @@ public class DesignBurgerController {
     @PostMapping
     public String processDesign(@Valid @ModelAttribute("design") Burger design, Errors errors, Model model) {
         if (errors.hasErrors()) {
-            System.out.println("has errors");
+            System.out.println("process design has errors");
             return "design";
         }
         //save the taco design
         //
-        System.out.println("in process design");
+        System.out.println("process method called");
         log.info("Processing design: " + design);
         return "redirect:/orders/current";
     }

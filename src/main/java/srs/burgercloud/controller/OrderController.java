@@ -24,6 +24,7 @@ public class OrderController {
     @PostMapping
     public String processOrder(@Valid Order order, Errors errors){
         if (errors.hasErrors()){
+            System.out.println("process order has errors");
             return "orderForm";
         }
         log.info("Order Submitted:  " + order);
