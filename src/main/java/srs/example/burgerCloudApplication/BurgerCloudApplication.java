@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfig
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 
-@SpringBootApplication(scanBasePackages = {"srs.example.burgerCloudApplication.data","srs.example.burgerCloudApplication.domain", "srs.example.burgerCloudApplication.web"})
+@SpringBootApplication(scanBasePackages = {"srs.example.burgerCloudApplication.data","srs.example.burgerCloudApplication.domain", "srs.example.burgerCloudApplication.web","srs.example.burgerCloudApplication.security","srs.example.burgerCloudApplication.service"})
 public class BurgerCloudApplication {
 
 	public static void main(String[] args) {
