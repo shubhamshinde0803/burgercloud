@@ -9,10 +9,13 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import srs.example.burgerCloudApplication.data.BurgerRepository;
 import srs.example.burgerCloudApplication.data.IngredientRepository;
+import srs.example.burgerCloudApplication.data.UserRepository;
 import srs.example.burgerCloudApplication.domain.Burger;
 import srs.example.burgerCloudApplication.domain.Ingredients;
 import srs.example.burgerCloudApplication.domain.Order;
+import srs.example.burgerCloudApplication.domain.User;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
@@ -29,6 +32,9 @@ public class DesignBurgerController {
     @Autowired
     private BurgerRepository designRepo;
 
+    @Autowired
+    private UserRepository userRepo;
+
 //    @Autowired
 //    public DesignBurgerController(IngredientRepository ingredientRepo, BurgerRepository designRepo) {
 //        this.ingredientRepo = ingredientRepo;
@@ -43,6 +49,13 @@ public class DesignBurgerController {
     @ModelAttribute(name = "burger")
     public Burger burger(){
         return new Burger();
+    }
+
+    @ModelAttribute(name = "user")
+    public User user(Principal principal){
+        String username = principal.getName();
+        User user = userRepo.findByUsername(username);
+        return user;
     }
 
 
