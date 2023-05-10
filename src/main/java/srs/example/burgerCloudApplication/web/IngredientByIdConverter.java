@@ -20,7 +20,7 @@ public class IngredientByIdConverter implements Converter<String, Optional<Ingre
 
     @Override
     public Optional<Ingredients> convert(String id) {
-        return ingredientRepo.findById(id);
+        return Optional.ofNullable(ingredientRepo.findById(id).orElse(null));
     }
 
 }
